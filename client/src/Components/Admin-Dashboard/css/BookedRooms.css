@@ -1,0 +1,202 @@
+.rooms-page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: var(--off-white);
+    font-family: inherit;
+}
+
+/* ── Header ── */
+.rooms-header {
+    background: var(--white);
+    padding: 24px 40px 0 40px;
+    border-bottom: 3px solid var(--black);
+}
+
+.rooms-header-top {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    padding-bottom: 18px;
+}
+
+.rooms-header h4 {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--black);
+    margin: 0;
+    letter-spacing: -0.5px;
+    font-family: Georgia, "Times New Roman", serif;
+}
+
+.rooms-header-tag {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--silver);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-family: inherit;
+}
+
+/* ── Body ── */
+.rooms-body {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    background: var(--off-white);
+}
+
+/* ── Table Panel Header ── */
+.rooms-table-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 32px 16px;
+    background: var(--white);
+    border-bottom: 1px solid var(--smoke);
+}
+
+.rooms-table-header h5 {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--black);
+    margin: 0;
+    font-family: Georgia, "Times New Roman", serif;
+}
+
+.rooms-count {
+    font-size: 12px;
+    color: var(--mid);
+    background: var(--off-white);
+    border: 1px solid var(--smoke);
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-family: inherit;
+}
+
+/* ── Table ── */
+.rooms-table-wrapper {
+    overflow-x: auto;
+    padding: 24px 32px;
+}
+
+.rooms-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    font-family: inherit;
+}
+
+.rooms-table thead tr {
+    border-bottom: 2px solid var(--smoke);
+}
+
+.rooms-table th {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--mid);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    padding: 10px 14px;
+    text-align: left;
+    white-space: nowrap;
+}
+
+.rooms-table tbody tr {
+    border-bottom: 1px solid var(--smoke);
+    background: var(--white);
+    transition: background var(--transition);
+}
+
+.rooms-table tbody tr:hover {
+    background: var(--off-white);
+}
+
+.rooms-table td {
+    padding: 13px 14px;
+    color: var(--charcoal);
+    vertical-align: middle;
+}
+
+.td-index {
+    color: var(--silver);
+    font-weight: 600;
+    width: 40px;
+}
+
+.td-title {
+    font-weight: 600;
+    color: var(--black);
+}
+
+.td-reason {
+    max-width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: var(--mid);
+    font-size: 12px;
+}
+
+.td-empty {
+    text-align: center;
+    color: var(--silver);
+    padding: 48px 0;
+    font-size: 13px;
+}
+
+/* ── Badges ── */
+.room-badge {
+    display: inline-block;
+    background: var(--off-white);
+    border: 1px solid var(--smoke);
+    color: var(--charcoal);
+    font-size: 12px;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 4px;
+    font-family: inherit;
+}
+
+.time-badge {
+    display: inline-block;
+    background: var(--black);
+    color: var(--white);
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 4px;
+    font-family: inherit;
+    letter-spacing: 0.3px;
+}
+
+/* ── Delete Button ── */
+.delete-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border: 1px solid var(--smoke);
+    border-radius: var(--radius-md);
+    background: var(--off-white);
+    color: var(--mid);
+    cursor: pointer;
+    font-size: 13px;
+    transition:
+        background var(--transition),
+        color var(--transition),
+        border var(--transition),
+        transform var(--transition);
+}
+
+.delete-btn:hover {
+    background: #fee2e2;
+    color: #dc2626;
+    border-color: #fca5a5;
+    transform: translateY(-1px);
+}
+
+.delete-btn:active {
+    transform: translateY(0);
+}

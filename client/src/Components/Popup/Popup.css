@@ -1,0 +1,64 @@
+
+
+.popup {
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+.popup-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 500px;
+    height: 60px;
+    gap: 1px;
+    background: white;
+    padding: 10px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 0.3s ease;
+}
+
+.popup-content p{
+    margin: 0;
+}
+
+.popup-content.success {
+    border: 2px solid green;
+    color: green;
+}
+
+.popup-content.error {
+    border: 2px solid red;
+    color: red;
+}
+
+.popup-content button {
+    width: 50px;
+    height: 40px;
+    border: none;
+    cursor: pointer;
+    border-radius: 10px;
+    background-color: white;
+}
+
+.popup-content button:hover {
+    background-color:#e4e3e38e;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}

@@ -1,0 +1,250 @@
+.assign-page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: var(--off-white);
+    font-family: inherit;
+}
+
+.assign-card {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 100vh;
+}
+
+/* ── Header ── */
+.assign-header {
+    background: var(--white);
+    padding: 24px 40px 0 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-bottom: 3px solid var(--black);
+}
+
+.assign-header-top {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    padding-bottom: 18px;
+}
+
+.assign-header h4 {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--black);
+    margin: 0;
+    letter-spacing: -0.5px;
+    font-family: Georgia, "Times New Roman", serif;
+}
+
+.assign-header-tag {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--silver);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-family: inherit;
+}
+
+/* ── Body ── */
+.assign-card-content {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    background: var(--off-white);
+}
+
+.assign-form {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+/* ── Fields Grid ── */
+.assign-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    padding: 36px 40px;
+    background: var(--white);
+    border-bottom: 1px solid var(--smoke);
+}
+
+@media (max-width: 640px) {
+    .assign-grid {
+        grid-template-columns: 1fr;
+        padding: 24px 20px;
+    }
+}
+
+/* ── Form Group ── */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.form-group label {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--mid);
+    text-transform: uppercase;
+    letter-spacing: 0.9px;
+    font-family: inherit;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 11px 14px;
+    border: 1px solid var(--smoke);
+    border-radius: var(--radius-md);
+    background: var(--off-white);
+    font-size: 14px;
+    font-family: inherit;
+    color: var(--black);
+    outline: none;
+    cursor: pointer;
+    transition:
+        border var(--transition),
+        box-shadow var(--transition),
+        background var(--transition);
+}
+
+/* custom dropdown arrow */
+.form-group select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%236b6b6b' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    background-color: var(--off-white);
+    padding-right: 36px;
+}
+
+.form-group input::placeholder {
+    color: var(--silver);
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: var(--charcoal);
+    background-color: var(--white);
+    box-shadow: 0 0 0 3px rgba(10, 10, 10, 0.07);
+}
+
+/* ── Employee Section ── */
+.employees-group {
+    padding: 36px 40px;
+    background: var(--white);
+    border-bottom: 1px solid var(--smoke);
+}
+
+.employees-group label {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--mid);
+    text-transform: uppercase;
+    letter-spacing: 0.9px;
+    display: block;
+    margin-bottom: 10px;
+    font-family: inherit;
+}
+
+.project-select {
+    width: 100%;
+    height: 180px;
+    cursor: pointer;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--smoke);
+    background: var(--off-white);
+    font-size: 14px;
+    font-family: inherit;
+    color: var(--black);
+    padding: 6px;
+    outline: none;
+    transition:
+        border var(--transition),
+        box-shadow var(--transition);
+}
+
+.project-select:focus {
+    border-color: var(--charcoal);
+    box-shadow: 0 0 0 3px rgba(10, 10, 10, 0.07);
+}
+
+.project-select option {
+    padding: 8px 12px;
+    font-size: 14px;
+    font-family: inherit;
+}
+
+.select-hint {
+    font-size: 12px;
+    color: var(--silver);
+    margin: 8px 0 0;
+    font-family: inherit;
+}
+
+/* ── Footer Buttons ── */
+.assign-btns {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+    padding: 24px 40px;
+    background: var(--white);
+    border-top: 1px solid var(--smoke);
+    margin-top: auto;
+}
+
+.btn-primary {
+    background: var(--black);
+    color: var(--white);
+    border: none;
+    padding: 11px 30px;
+    border-radius: var(--radius-md);
+    font-size: 14px;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    transition:
+        background var(--transition),
+        transform var(--transition);
+}
+
+.btn-primary:hover {
+    background: var(--graphite);
+    transform: translateY(-1px);
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+    background: var(--charcoal);
+}
+
+.btn-secondary {
+    background: var(--white);
+    color: var(--charcoal);
+    border: 1px solid var(--smoke);
+    padding: 11px 30px;
+    border-radius: var(--radius-md);
+    font-size: 14px;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    transition:
+        background var(--transition),
+        border var(--transition),
+        transform var(--transition);
+}
+
+.btn-secondary:hover {
+    background: var(--off-white);
+    border-color: var(--silver);
+    transform: translateY(-1px);
+}
+
+.btn-secondary:active {
+    transform: translateY(0);
+}
