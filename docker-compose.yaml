@@ -1,0 +1,23 @@
+services:
+
+  backend_service:
+    build: ./backend
+    container_name: employee_activity_monitoring_backend_container
+    restart: always
+    env_file:
+      - ./backend/.env
+    ports:
+      - "4000:4000"
+
+
+  client_service:
+    build: ./client
+    container_name: employee_activity_monitoring_client_container
+    restart: always
+    env_file:
+      - ./client/.env
+    ports:
+      - "5173:5173"
+    depends_on:
+      - backend_service
+
