@@ -1,8 +1,8 @@
-import React, { useContext } from "react";
-import "../css/AddEmployee.css";
-import { useLocation } from "react-router-dom";
-import DataContext from "../../../Context/AdminContext/Datacontext";
-import PopUp from "../../Popup/PopUp";
+import React, { useContext } from 'react';
+import '../css/AddEmployee.css';
+import { useLocation } from 'react-router-dom';
+import DataContext from '../../../Context/AdminContext/Datacontext';
+import PopUp from '../../Popup/PopUp';
 
 const AddEmployee = () => {
     const location = useLocation();
@@ -12,7 +12,7 @@ const AddEmployee = () => {
         handleChange,
         inputData = {},
         popUp,
-        setPopUp
+        setPopUp,
     } = useContext(DataContext);
 
     const { employeeId } = location.state || {};
@@ -20,19 +20,16 @@ const AddEmployee = () => {
     return (
         <div>
             <div className="whole container-fluid row justify-content-center align-items-center">
-
                 <div className="addemp-heading d-flex justify-content-center align-items-center col-12 text-center">
-                    <h5>{employeeId ? "Edit Employee" : "Add Employee"}</h5>
+                    <h5>{employeeId ? 'Edit Employee' : 'Add Employee'}</h5>
                 </div>
 
                 <form
                     onSubmit={handleSubmit}
                     className="employee-form d-flex flex-column justify-content-around"
                 >
-
                     {/* FIRST LINE */}
                     <div className="first-line-input d-block d-lg-flex justify-content-around">
-
                         <div className="form-group">
                             <label>First Name:</label>
                             <input
@@ -76,12 +73,10 @@ const AddEmployee = () => {
                                 required
                             />
                         </div>
-
                     </div>
 
                     {/* SECOND LINE */}
                     <div className="secound-line-input d-block d-lg-flex justify-content-around">
-
                         <div className="form-group">
                             <label>Gender:</label>
                             <select
@@ -128,36 +123,38 @@ const AddEmployee = () => {
                                 required
                             />
                         </div>
-
                     </div>
 
                     {/* ADDRESS */}
                     <fieldset>
                         <legend>Address:</legend>
                         <div className="third-line-input d-block d-lg-flex justify-content-around">
-                            {["street", "city", "state", "zipCode"].map((field) => (
-                                <div key={field} className="fieldset-input">
-                                    <label>{field}:</label>
-                                    <input
-                                        type="text"
-                                        name={`address[${field}]`}
-                                        value={inputData.address?.[field] || ""}
-                                        onChange={handleChange}
-                                    />
-                                </div>
-                            ))}
+                            {['street', 'city', 'state', 'zipCode'].map(
+                                (field) => (
+                                    <div key={field} className="fieldset-input">
+                                        <label>{field}:</label>
+                                        <input
+                                            type="text"
+                                            name={`address[${field}]`}
+                                            value={
+                                                inputData.address?.[field] || ''
+                                            }
+                                            onChange={handleChange}
+                                        />
+                                    </div>
+                                ),
+                            )}
                         </div>
                     </fieldset>
 
                     {/* FOURTH LINE */}
                     <div className="fourth-line-input d-block d-lg-flex justify-content-around">
-
                         <div className="form-group">
                             <label>Country:</label>
                             <input
                                 type="text"
                                 name="address[country]"
-                                value={inputData.address?.country || ""}
+                                value={inputData.address?.country || ''}
                                 onChange={handleChange}
                             />
                         </div>
@@ -172,15 +169,15 @@ const AddEmployee = () => {
                                     const files = Array.from(e.target.files);
 
                                     if (files.length !== 3) {
-                                        alert("Please select exactly 3 images");
+                                        alert('Please select exactly 3 images');
                                         return;
                                     }
 
                                     handleChange({
                                         target: {
-                                            name: "images",
-                                            value: files
-                                        }
+                                            name: 'images',
+                                            value: files,
+                                        },
                                     });
                                 }}
                             />
@@ -213,16 +210,14 @@ const AddEmployee = () => {
                                 <option value="Employee">Employee</option>
                             </select>
                         </div>
-
                     </div>
 
                     {/* SUBMIT */}
                     <div className="form-btn">
                         <button type="submit">
-                            {employeeId ? "Save Changes" : "Add Employee"}
+                            {employeeId ? 'Save Changes' : 'Add Employee'}
                         </button>
                     </div>
-
                 </form>
 
                 {/* POPUP */}
@@ -233,13 +228,12 @@ const AddEmployee = () => {
                         onClose={() =>
                             setPopUp({
                                 show: false,
-                                message: "",
-                                isSuccess: true
+                                message: '',
+                                isSuccess: true,
                             })
                         }
                     />
                 )}
-
             </div>
         </div>
     );

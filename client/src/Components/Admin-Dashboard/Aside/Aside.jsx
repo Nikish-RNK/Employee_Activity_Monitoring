@@ -1,15 +1,15 @@
-import React, { useContext } from "react";
-import { Link, Outlet } from "react-router-dom";
-import "./aside.css";
-import rmsLogo from "../assets/images/logo.png";
-import { IoPersonCircleOutline } from "react-icons/io5";
-import { TbLogout2 } from "react-icons/tb";
-import { BsFilePerson, BsCollectionFill } from "react-icons/bs";
-import { FaCalendarAlt } from "react-icons/fa";
-import { RiUserSettingsFill, RiDashboardHorizontalLine } from "react-icons/ri";
-import { RxHamburgerMenu } from "react-icons/rx";
-import { LuCctv } from "react-icons/lu";
-import AnotherContext from "../../../Context/AdminContext/AnotherContext";
+import React, { useContext } from 'react';
+import { Link, Outlet } from 'react-router-dom';
+import './aside.css';
+import rmsLogo from '../assets/images/logo.png';
+import { IoPersonCircleOutline } from 'react-icons/io5';
+import { TbLogout2 } from 'react-icons/tb';
+import { BsFilePerson, BsCollectionFill } from 'react-icons/bs';
+import { FaCalendarAlt } from 'react-icons/fa';
+import { RiUserSettingsFill, RiDashboardHorizontalLine } from 'react-icons/ri';
+import { RxHamburgerMenu } from 'react-icons/rx';
+import { LuCctv } from 'react-icons/lu';
+import AnotherContext from '../../../Context/AdminContext/AnotherContext';
 
 const DashBoard = () => {
     const { dropDown, handleClick, clicked, asideOpen } =
@@ -17,15 +17,13 @@ const DashBoard = () => {
 
     return (
         <div className="layout">
-
             <div className="burger-bar">
                 <button className="burger-btn" onClick={handleClick}>
                     <RxHamburgerMenu />
                 </button>
             </div>
 
-            <aside className={`sidebar ${asideOpen ? "open" : ""}`}>
-
+            <aside className={`sidebar ${asideOpen ? 'open' : ''}`}>
                 <div className="sidebar-logo">
                     <img src={rmsLogo} alt="logo" className="logo-img" />
                 </div>
@@ -50,7 +48,6 @@ const DashBoard = () => {
 
                 {/* Nav */}
                 <nav className="sidebar-nav">
-
                     {/* Dashboard */}
                     <div className="nav-group">
                         <div className="nav-item">
@@ -61,26 +58,35 @@ const DashBoard = () => {
                         </div>
                     </div>
 
-
                     {/* Employees */}
                     <div className="nav-group">
                         <div
-                            className={`nav-item ${clicked === "Employees" ? "active" : ""}`}
-                            onClick={() => dropDown("Employees")}
+                            className={`nav-item ${clicked === 'Employees' ? 'active' : ''}`}
+                            onClick={() => dropDown('Employees')}
                         >
                             <BsFilePerson className="nav-icon" />
                             <span>Employees</span>
-                            <span className={`nav-arrow ${clicked === "Employees" ? "rotated" : ""}`}>›</span>
+                            <span
+                                className={`nav-arrow ${clicked === 'Employees' ? 'rotated' : ''}`}
+                            >
+                                ›
+                            </span>
                         </div>
-                        {clicked === "Employees" && (
+                        {clicked === 'Employees' && (
                             <ul className="nav-submenu">
                                 <li>
-                                    <Link to="addemployee" className="submenu-link">
+                                    <Link
+                                        to="addemployee"
+                                        className="submenu-link"
+                                    >
                                         Add Employee
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link to="allemployees" className="submenu-link">
+                                    <Link
+                                        to="allemployees"
+                                        className="submenu-link"
+                                    >
                                         All Employees
                                     </Link>
                                 </li>
@@ -91,22 +97,32 @@ const DashBoard = () => {
                     {/* Projects */}
                     <div className="nav-group">
                         <div
-                            className={`nav-item ${clicked === "organize" ? "active" : ""}`}
-                            onClick={() => dropDown("organize")}
+                            className={`nav-item ${clicked === 'organize' ? 'active' : ''}`}
+                            onClick={() => dropDown('organize')}
                         >
                             <BsCollectionFill className="nav-icon" />
                             <span>Projects</span>
-                            <span className={`nav-arrow ${clicked === "organize" ? "rotated" : ""}`}>›</span>
+                            <span
+                                className={`nav-arrow ${clicked === 'organize' ? 'rotated' : ''}`}
+                            >
+                                ›
+                            </span>
                         </div>
-                        {clicked === "organize" && (
+                        {clicked === 'organize' && (
                             <ul className="nav-submenu">
                                 <li>
-                                    <Link to="addproject" className="submenu-link">
+                                    <Link
+                                        to="addproject"
+                                        className="submenu-link"
+                                    >
                                         Add Project
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link to="assignproject" className="submenu-link">
+                                    <Link
+                                        to="assignproject"
+                                        className="submenu-link"
+                                    >
                                         Assign Project
                                     </Link>
                                 </li>
@@ -117,17 +133,24 @@ const DashBoard = () => {
                     {/* Attendance */}
                     <div className="nav-group">
                         <div
-                            className={`nav-item ${clicked === "attendance" ? "active" : ""}`}
-                            onClick={() => dropDown("attendance")}
+                            className={`nav-item ${clicked === 'attendance' ? 'active' : ''}`}
+                            onClick={() => dropDown('attendance')}
                         >
                             <FaCalendarAlt className="nav-icon" />
                             <span>Attendance</span>
-                            <span className={`nav-arrow ${clicked === "attendance" ? "rotated" : ""}`}>›</span>
+                            <span
+                                className={`nav-arrow ${clicked === 'attendance' ? 'rotated' : ''}`}
+                            >
+                                ›
+                            </span>
                         </div>
-                        {clicked === "attendance" && (
+                        {clicked === 'attendance' && (
                             <ul className="nav-submenu">
                                 <li>
-                                    <Link to="attendance" className="submenu-link">
+                                    <Link
+                                        to="attendance"
+                                        className="submenu-link"
+                                    >
                                         Attendance List
                                     </Link>
                                 </li>
@@ -138,22 +161,32 @@ const DashBoard = () => {
                     {/* Resources */}
                     <div className="nav-group">
                         <div
-                            className={`nav-item ${clicked === "resource" ? "active" : ""}`}
-                            onClick={() => dropDown("resource")}
+                            className={`nav-item ${clicked === 'resource' ? 'active' : ''}`}
+                            onClick={() => dropDown('resource')}
                         >
                             <RiUserSettingsFill className="nav-icon" />
                             <span>Resources</span>
-                            <span className={`nav-arrow ${clicked === "resource" ? "rotated" : ""}`}>›</span>
+                            <span
+                                className={`nav-arrow ${clicked === 'resource' ? 'rotated' : ''}`}
+                            >
+                                ›
+                            </span>
                         </div>
-                        {clicked === "resource" && (
+                        {clicked === 'resource' && (
                             <ul className="nav-submenu">
                                 <li>
-                                    <Link to="meeting-room" className="submenu-link">
+                                    <Link
+                                        to="meeting-room"
+                                        className="submenu-link"
+                                    >
                                         Meeting Room
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link to="all-meeting-room" className="submenu-link">
+                                    <Link
+                                        to="all-meeting-room"
+                                        className="submenu-link"
+                                    >
                                         Booked Rooms
                                     </Link>
                                 </li>
@@ -164,24 +197,30 @@ const DashBoard = () => {
                     {/* Monitor */}
                     <div className="nav-group">
                         <div
-                            className={`nav-item ${clicked === "monitor" ? "active" : ""}`}
-                            onClick={() => dropDown("monitor")}
+                            className={`nav-item ${clicked === 'monitor' ? 'active' : ''}`}
+                            onClick={() => dropDown('monitor')}
                         >
                             <LuCctv className="nav-icon" />
                             <span>Monitor</span>
-                            <span className={`nav-arrow ${clicked === "monitor" ? "rotated" : ""}`}>›</span>
+                            <span
+                                className={`nav-arrow ${clicked === 'monitor' ? 'rotated' : ''}`}
+                            >
+                                ›
+                            </span>
                         </div>
-                        {clicked === "monitor" && (
+                        {clicked === 'monitor' && (
                             <ul className="nav-submenu">
                                 <li>
-                                    <Link to="Activity-Monitoring" className="submenu-link">
+                                    <Link
+                                        to="Activity-Monitoring"
+                                        className="submenu-link"
+                                    >
                                         Monitor
                                     </Link>
                                 </li>
                             </ul>
                         )}
                     </div>
-
                 </nav>
             </aside>
 
@@ -189,7 +228,6 @@ const DashBoard = () => {
             <div className="content-area">
                 <Outlet />
             </div>
-
         </div>
     );
 };

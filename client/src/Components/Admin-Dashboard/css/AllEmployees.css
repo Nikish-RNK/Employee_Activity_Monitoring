@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Mono:wght@300;400;500&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Mono:wght@300;400;500&display=swap');
 
 /* ─── Variables ──────────────────────────────────────── */
 :root {
@@ -21,7 +21,7 @@
     background-color: var(--white);
     border-top: 4px solid var(--black);
     border-radius: 0 0 var(--radius-md) var(--radius-md);
-    font-family: "DM Mono", monospace;
+    font-family: 'DM Mono', monospace;
     box-shadow:
         0 1px 3px rgba(0, 0, 0, 0.05),
         0 8px 24px rgba(0, 0, 0, 0.08);
@@ -31,7 +31,7 @@
 
 /* ruled-paper texture */
 .add-employee-page::before {
-    content: "";
+    content: '';
     position: absolute;
     inset: 0;
     background-image: repeating-linear-gradient(
@@ -61,7 +61,7 @@
 }
 
 .allemp-heading h5 {
-    font-family: "Playfair Display", serif;
+    font-family: 'Playfair Display', serif;
     font-size: 26px;
     font-weight: 700;
     color: var(--black);
@@ -71,7 +71,7 @@
 }
 
 .allemp-heading .record-count {
-    font-family: "DM Mono", monospace;
+    font-family: 'DM Mono', monospace;
     font-size: 10px;
     letter-spacing: 2.5px;
     text-transform: uppercase;
@@ -110,7 +110,7 @@ thead {
 
 thead th {
     padding: 12px 14px;
-    font-family: "DM Mono", monospace;
+    font-family: 'DM Mono', monospace;
     font-size: 10px;
     font-weight: 500;
     letter-spacing: 2.5px;
@@ -149,7 +149,7 @@ tbody tr:nth-child(even):hover {
 
 tbody td {
     padding: 13px 14px;
-    font-family: "DM Mono", monospace;
+    font-family: 'DM Mono', monospace;
     font-size: 13px;
     color: var(--graphite);
     vertical-align: middle;
@@ -218,7 +218,7 @@ tbody td.emp-id {
 
 .allemp-btn {
     padding: 6px 12px;
-    font-family: "DM Mono", monospace;
+    font-family: 'DM Mono', monospace;
     font-size: 10px;
     font-weight: 500;
     letter-spacing: 1.5px;

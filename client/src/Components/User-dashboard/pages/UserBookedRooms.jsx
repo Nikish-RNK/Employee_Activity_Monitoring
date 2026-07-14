@@ -1,5 +1,5 @@
-import React, { useContext } from "react";
-import AnotherContext from "../../../Context/AdminContext/AnotherContext";
+import React, { useContext } from 'react';
+import AnotherContext from '../../../Context/AdminContext/AnotherContext';
 
 const UserBookedRooms = () => {
     const { bookedRooms } = useContext(AnotherContext);
@@ -31,7 +31,7 @@ const UserBookedRooms = () => {
                                 <td>{room.roomsForMeeting}</td>
                                 <td>
                                     {new Date(
-                                        room.bookingDate
+                                        room.bookingDate,
                                     ).toLocaleDateString()}
                                 </td>
                                 <td>{room.reasonForMeeting}</td>

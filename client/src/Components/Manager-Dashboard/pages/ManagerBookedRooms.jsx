@@ -1,6 +1,6 @@
-import React, { useContext } from "react";
-import "../../Manager-Dashboard/css/ManagerBookedRooms.css";
-import AnotherContext from "../../../Context/AdminContext/AnotherContext";
+import React, { useContext } from 'react';
+import '../../Manager-Dashboard/css/ManagerBookedRooms.css';
+import AnotherContext from '../../../Context/AdminContext/AnotherContext';
 
 const ManagerBookedRooms = () => {
     const { bookedRooms } = useContext(AnotherContext);
@@ -32,7 +32,7 @@ const ManagerBookedRooms = () => {
                                 <td>{room.roomsForMeeting}</td>
                                 <td>
                                     {new Date(
-                                        room.bookingDate
+                                        room.bookingDate,
                                     ).toLocaleDateString()}
                                 </td>
                                 <td>{room.reasonForMeeting}</td>

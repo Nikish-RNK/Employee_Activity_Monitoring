@@ -1,7 +1,7 @@
-import React, { useContext } from "react";
-import "../css/MeetingRoom.css";
-import DataContext from "../../../Context/AdminContext/Datacontext";
-import PopUp from "../../Popup/PopUp";
+import React, { useContext } from 'react';
+import '../css/MeetingRoom.css';
+import DataContext from '../../../Context/AdminContext/Datacontext';
+import PopUp from '../../Popup/PopUp';
 
 const MeetingRoom = () => {
     const {
@@ -15,7 +15,6 @@ const MeetingRoom = () => {
 
     return (
         <div className="meeting-page">
-
             {/* ── Header ── */}
             <div className="meeting-header">
                 <div className="meeting-header-top">
@@ -26,10 +25,8 @@ const MeetingRoom = () => {
 
             <div className="meeting-card-content">
                 <form onSubmit={handleBookingRoom} className="meeting-form">
-
                     {/* ── Row 1 ── */}
                     <div className="meeting-grid">
-
                         <div className="form-group">
                             <label>Project Head</label>
                             <select
@@ -38,9 +35,14 @@ const MeetingRoom = () => {
                                 onChange={handleChange}
                                 required
                             >
-                                <option value="" disabled>Select Manager</option>
+                                <option value="" disabled>
+                                    Select Manager
+                                </option>
                                 {allManager.map((each) => (
-                                    <option key={each._id} value={each.firstName}>
+                                    <option
+                                        key={each._id}
+                                        value={each.firstName}
+                                    >
                                         {each.firstName} {each.lastName}
                                     </option>
                                 ))}
@@ -55,7 +57,9 @@ const MeetingRoom = () => {
                                 onChange={handleChange}
                                 required
                             >
-                                <option value="" disabled>Select Room</option>
+                                <option value="" disabled>
+                                    Select Room
+                                </option>
                                 <option value="Room A">Room A</option>
                                 <option value="Room B">Room B</option>
                                 <option value="Room C">Room C</option>
@@ -72,12 +76,10 @@ const MeetingRoom = () => {
                                 placeholder="Reason for booking"
                             />
                         </div>
-
                     </div>
 
                     {/* ── Row 2 ── */}
                     <div className="meeting-grid">
-
                         <div className="form-group">
                             <label>Booking Date</label>
                             <input
@@ -110,7 +112,6 @@ const MeetingRoom = () => {
                                 required
                             />
                         </div>
-
                     </div>
 
                     {/* ── Row 3 ── */}
@@ -133,7 +134,6 @@ const MeetingRoom = () => {
                             Book Room
                         </button>
                     </div>
-
                 </form>
             </div>
 
@@ -141,7 +141,9 @@ const MeetingRoom = () => {
                 <PopUp
                     message={popUp.message}
                     isSuccess={popUp.isSuccess}
-                    onClose={() => setPopUp({ show: false, message: "", isSuccess: true })}
+                    onClose={() =>
+                        setPopUp({ show: false, message: '', isSuccess: true })
+                    }
                 />
             )}
         </div>

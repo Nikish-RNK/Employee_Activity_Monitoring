@@ -1,5 +1,5 @@
-const mongoose = require("mongoose");
-const bcrypt = require("bcrypt");
+const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
 
 const employeeSchema = new mongoose.Schema({
     firstName: {
@@ -78,8 +78,8 @@ const employeeSchema = new mongoose.Schema({
 
     status: {
         type: String,
-        enum: ["Active", "Inactive", "On Leave"],
-        default: "Active",
+        enum: ['Active', 'Inactive', 'On Leave'],
+        default: 'Active',
     },
 
     salary: {
@@ -101,8 +101,8 @@ const employeeSchema = new mongoose.Schema({
     },
 });
 
-employeeSchema.pre("save", async function () {
-    if (!this.isModified("password")) {
+employeeSchema.pre('save', async function () {
+    if (!this.isModified('password')) {
         return;
     }
 
@@ -110,4 +110,4 @@ employeeSchema.pre("save", async function () {
     this.password = await bcrypt.hash(this.password, salt);
 });
 
-module.exports = mongoose.model("Employee", employeeSchema);
+module.exports = mongoose.model('Employee', employeeSchema);

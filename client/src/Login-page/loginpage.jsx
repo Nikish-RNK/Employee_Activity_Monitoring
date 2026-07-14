@@ -1,6 +1,6 @@
-import React, { useContext } from "react";
-import "../Login-page/login-page.css";
-import DataContext from "../Context/AdminContext/Datacontext";
+import React, { useContext } from 'react';
+import '../Login-page/login-page.css';
+import DataContext from '../Context/AdminContext/Datacontext';
 
 const Loginpage = () => {
     const { handleChange, handleLogin, error } = useContext(DataContext);
@@ -41,7 +41,7 @@ const Loginpage = () => {
                         </button>
                         <div className="error">
                             {error && (
-                                <h5 style={{ color: "red", margin: "0" }}>
+                                <h5 style={{ color: 'red', margin: '0' }}>
                                     {error}
                                 </h5>
                             )}

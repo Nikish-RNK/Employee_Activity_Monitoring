@@ -1,9 +1,9 @@
-import React, { useContext, useEffect, useState } from "react";
-import "../css/AllEmployees.css";
-import "../css/BookedRooms.css";
-import { FaTrash } from "react-icons/fa6";
-import axios from "axios";
-import AnotherContext from "../../../Context/AdminContext/AnotherContext";
+import React, { useContext, useEffect, useState } from 'react';
+import '../css/AllEmployees.css';
+import '../css/BookedRooms.css';
+import { FaTrash } from 'react-icons/fa6';
+import axios from 'axios';
+import AnotherContext from '../../../Context/AdminContext/AnotherContext';
 
 const AllMeetingRooms = () => {
     const { handleRoomDelete } = useContext(AnotherContext);
@@ -16,7 +16,7 @@ const AllMeetingRooms = () => {
                 setBookedRooms(res.data.allBookedRooms);
             })
             .catch((error) => {
-                console.error("Fetching Booked Room Failed", error);
+                console.error('Fetching Booked Room Failed', error);
             });
     };
 
@@ -26,7 +26,6 @@ const AllMeetingRooms = () => {
 
     return (
         <div className="rooms-page">
-
             {/* ── Header ── */}
             <div className="rooms-header">
                 <div className="rooms-header-top">
@@ -37,10 +36,11 @@ const AllMeetingRooms = () => {
 
             {/* ── Table Panel ── */}
             <div className="rooms-body">
-
                 <div className="rooms-table-header">
                     <h5>All Bookings</h5>
-                    <span className="rooms-count">{BookedRooms.length} bookings</span>
+                    <span className="rooms-count">
+                        {BookedRooms.length} bookings
+                    </span>
                 </div>
 
                 <div className="rooms-table-wrapper">
@@ -61,15 +61,25 @@ const AllMeetingRooms = () => {
                             {BookedRooms.length > 0 ? (
                                 BookedRooms.map((each, index) => (
                                     <tr key={each._id}>
-                                        <td className="td-index">{index + 1}</td>
-                                        <td className="td-title">{each.projectHead}</td>
+                                        <td className="td-index">
+                                            {index + 1}
+                                        </td>
+                                        <td className="td-title">
+                                            {each.projectHead}
+                                        </td>
                                         <td>
                                             <span className="room-badge">
                                                 {each.roomsForMeeting}
                                             </span>
                                         </td>
-                                        <td className="td-reason">{each.reasonForMeeting}</td>
-                                        <td>{new Date(each.bookingDate).toLocaleDateString()}</td>
+                                        <td className="td-reason">
+                                            {each.reasonForMeeting}
+                                        </td>
+                                        <td>
+                                            {new Date(
+                                                each.bookingDate,
+                                            ).toLocaleDateString()}
+                                        </td>
                                         <td>
                                             <span className="time-badge">
                                                 {each.meetingStartingTime}
@@ -84,7 +94,9 @@ const AllMeetingRooms = () => {
                                             <button
                                                 className="delete-btn"
                                                 aria-label="Delete Booking"
-                                                onClick={() => handleRoomDelete(each._id)}
+                                                onClick={() =>
+                                                    handleRoomDelete(each._id)
+                                                }
                                             >
                                                 <FaTrash />
                                             </button>
@@ -101,7 +113,6 @@ const AllMeetingRooms = () => {
                         </tbody>
                     </table>
                 </div>
-
             </div>
         </div>
     );

@@ -1,44 +1,44 @@
-import React, { useEffect, useRef, useState, useCallback } from "react";
+import React, { useEffect, useRef, useState, useCallback } from 'react';
 // import { FaceMesh } from "@mediapipe/face_mesh";
 // import { Camera } from "@mediapipe/camera_utils";
-import * as cocoSsd from "@tensorflow-models/coco-ssd";
-import "@tensorflow/tfjs";
-import "../css/ActivityMonitoring.css";
+import * as cocoSsd from '@tensorflow-models/coco-ssd';
+import '@tensorflow/tfjs';
+import '../css/ActivityMonitoring.css';
 
 const SEVERITY = {
     error: {
-        dot: "#ef4444",
-        badge: "#fef2f2",
-        bcolor: "#fca5a5",
-        label: "Alert",
-        text: "#dc2626",
+        dot: '#ef4444',
+        badge: '#fef2f2',
+        bcolor: '#fca5a5',
+        label: 'Alert',
+        text: '#dc2626',
     },
     warning: {
-        dot: "#f59e0b",
-        badge: "#fffbeb",
-        bcolor: "#fcd34d",
-        label: "Warn",
-        text: "#b45309",
+        dot: '#f59e0b',
+        badge: '#fffbeb',
+        bcolor: '#fcd34d',
+        label: 'Warn',
+        text: '#b45309',
     },
     info: {
-        dot: "#22c55e",
-        badge: "#f0fdf4",
-        bcolor: "#86efac",
-        label: "OK",
-        text: "#16a34a",
+        dot: '#22c55e',
+        badge: '#f0fdf4',
+        bcolor: '#86efac',
+        label: 'OK',
+        text: '#16a34a',
     },
 };
 
 const timeStr = () =>
     new Date().toLocaleTimeString([], {
-        hour: "2-digit",
-        minute: "2-digit",
-        second: "2-digit",
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
         hour12: true,
     });
 
 const fmt = (s) =>
-    `${String(Math.floor(s / 60)).padStart(2, "0")}:${String(s % 60).padStart(2, "0")}`;
+    `${String(Math.floor(s / 60)).padStart(2, '0')}:${String(s % 60).padStart(2, '0')}`;
 
 const ConfBar = ({ label, pct, color }) => (
     <div className="am-conf-item">
@@ -60,23 +60,23 @@ const ActivityMonitoring = () => {
     const canvasRef = useRef(null);
     const cameraRef = useRef(null);
     const modelRef = useRef(null);
-    const lastActiveRef = useRef(Date.now());
+    const lastActiveRef = useRef(() => Date.now());
     const sessionStartRef = useRef(null);
     const workingTicksRef = useRef(0);
     const totalTicksRef = useRef(0);
 
-    const lastLogRef = useRef({ desc: "", time: 0 });
+    const lastLogRef = useRef({ desc: '', time: 0 });
 
     const EYE_CLOSED_THRESHOLD = 20;
     const eyesClosedFrames = useRef(0);
 
-    const [status, setStatus] = useState("Camera Off");
-    const [warning, setWarning] = useState("");
+    const [status, setStatus] = useState('Camera Off');
+    const [warning, setWarning] = useState('');
     const [idleTime, setIdleTime] = useState(0);
     const [sessionTime, setSessionTime] = useState(0);
     const [camActive, setCamActive] = useState(false);
     const [faceCount, setFaceCount] = useState(0);
-    const [eyeState, setEyeState] = useState("—");
+    const [eyeState, setEyeState] = useState('—');
     const [focusPct, setFocusPct] = useState(0);
     const [flagCount, setFlagCount] = useState(0);
     const [events, setEvents] = useState([]);
@@ -104,7 +104,7 @@ const ActivityMonitoring = () => {
     }, []);
 
     const addEvent = useCallback(
-        (desc, severity = "info", cooldownMs = 8000) => {
+        (desc, severity = 'info', cooldownMs = 8000) => {
             const now = Date.now();
             const last = lastLogRef.current;
             if (last.desc === desc && now - last.time < cooldownMs) return;
@@ -113,7 +113,7 @@ const ActivityMonitoring = () => {
             setEvents((prev) =>
                 [{ desc, severity, time: timeStr() }, ...prev].slice(0, 15),
             );
-            if (severity === "error") setFlagCount((n) => n + 1);
+            if (severity === 'error') setFlagCount((n) => n + 1);
         },
         [],
     );
@@ -244,31 +244,31 @@ const ActivityMonitoring = () => {
     const stopCamera = () => {
         if (cameraRef.current) cameraRef.current.stop();
         setCamActive(false);
-        setStatus("Camera Off");
-        setWarning("");
+        setStatus('Camera Off');
+        setWarning('');
         setFaceCount(0);
-        setEyeState("—");
+        setEyeState('—');
         setConfFace(0);
         setConfGaze(0);
         setConfObj(0);
         sessionStartRef.current = null;
-        addEvent("Session ended", "info", 0);
+        addEvent('Session ended', 'info', 0);
     };
 
     const statusColor =
-        status === "Focused"
-            ? "c-green"
-            : status === "Camera Off"
-              ? "c-muted"
-              : "c-red";
+        status === 'Focused'
+            ? 'c-green'
+            : status === 'Camera Off'
+              ? 'c-muted'
+              : 'c-red';
     const eyeColor =
-        eyeState === "Open"
-            ? "c-green"
-            : eyeState === "Closed"
-              ? "c-red"
-              : "c-muted";
+        eyeState === 'Open'
+            ? 'c-green'
+            : eyeState === 'Closed'
+              ? 'c-red'
+              : 'c-muted';
     const focusColor =
-        focusPct >= 70 ? "#16a34a" : focusPct >= 40 ? "#d97706" : "#dc2626";
+        focusPct >= 70 ? '#16a34a' : focusPct >= 40 ? '#d97706' : '#dc2626';
 
     return (
         <div className="am-root">
@@ -281,8 +281,8 @@ const ActivityMonitoring = () => {
                     </div>
                     <div className="am-header-sub">
                         {camActive
-                            ? "Session in progress"
-                            : "Start a session to begin monitoring"}
+                            ? 'Session in progress'
+                            : 'Start a session to begin monitoring'}
                     </div>
                 </div>
 
@@ -305,7 +305,7 @@ const ActivityMonitoring = () => {
                         <span
                             className="am-hstat-val"
                             style={{
-                                color: flagCount > 0 ? "#dc2626" : "#1e293b",
+                                color: flagCount > 0 ? '#dc2626' : '#1e293b',
                             }}
                         >
                             {flagCount}
@@ -327,7 +327,7 @@ const ActivityMonitoring = () => {
 
                         <div
                             className="am-video-wrap"
-                            style={{ display: camActive ? "block" : "none" }}
+                            style={{ display: camActive ? 'block' : 'none' }}
                         >
                             <video ref={videoRef} autoPlay muted />
                             <canvas ref={canvasRef} />
@@ -385,7 +385,7 @@ const ActivityMonitoring = () => {
                     <div className="am-controls">
                         <button
                             className="am-btn am-btn-start"
-                            onClick={startCamera}
+                            // onClick={startCamera}
                             disabled={camActive}
                         >
                             Start Camera
@@ -404,17 +404,17 @@ const ActivityMonitoring = () => {
                         <ConfBar
                             label="Face detection"
                             pct={confFace}
-                            color={confFace > 75 ? "#16a34a" : "#d97706"}
+                            color={confFace > 75 ? '#16a34a' : '#d97706'}
                         />
                         <ConfBar
                             label="Gaze tracking"
                             pct={confGaze}
-                            color={confGaze > 75 ? "#16a34a" : "#d97706"}
+                            color={confGaze > 75 ? '#16a34a' : '#d97706'}
                         />
                         <ConfBar
                             label="Object detect"
                             pct={confObj}
-                            color={confObj > 75 ? "#16a34a" : "#d97706"}
+                            color={confObj > 75 ? '#16a34a' : '#d97706'}
                         />
                     </div>
                 </aside>
@@ -437,7 +437,7 @@ const ActivityMonitoring = () => {
                                 <span
                                     style={{
                                         fontSize: 14,
-                                        color: "#cbd5e1",
+                                        color: '#cbd5e1',
                                         fontWeight: 400,
                                     }}
                                 >
@@ -449,16 +449,16 @@ const ActivityMonitoring = () => {
                         <div className="am-stat-card">
                             <label>People in Frame</label>
                             <div
-                                className={`am-stat-val ${faceCount > 1 ? "c-red" : faceCount === 1 ? "c-green" : "c-muted"}`}
+                                className={`am-stat-val ${faceCount > 1 ? 'c-red' : faceCount === 1 ? 'c-green' : 'c-muted'}`}
                             >
                                 {faceCount}
                             </div>
                             <div className="am-stat-sub">
                                 {faceCount === 1
-                                    ? "Just you"
+                                    ? 'Just you'
                                     : faceCount > 1
-                                      ? "Too many"
-                                      : "No one detected"}
+                                      ? 'Too many'
+                                      : 'No one detected'}
                             </div>
                         </div>
                         <div className="am-stat-card">
@@ -477,7 +477,7 @@ const ActivityMonitoring = () => {
                             {events.length > 0 && (
                                 <span className="am-log-count">
                                     {events.length} event
-                                    {events.length !== 1 ? "s" : ""}
+                                    {events.length !== 1 ? 's' : ''}
                                 </span>
                             )}
                         </div>

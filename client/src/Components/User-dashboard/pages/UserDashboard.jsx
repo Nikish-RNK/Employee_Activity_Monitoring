@@ -1,9 +1,9 @@
-import React, { useContext } from "react";
-import { MdDeleteOutline } from "react-icons/md";
-import DataContext from "../../../Context/AdminContext/Datacontext";
-import project from "../../Admin-Dashboard/assets/images/project-cloud-disk.png";
-import { Link } from "react-router-dom";
-import AnotherContext from "../../../Context/AdminContext/AnotherContext";
+import React, { useContext } from 'react';
+import { MdDeleteOutline } from 'react-icons/md';
+import DataContext from '../../../Context/AdminContext/Datacontext';
+import project from '../../Admin-Dashboard/assets/images/project-cloud-disk.png';
+import { Link } from 'react-router-dom';
+import AnotherContext from '../../../Context/AdminContext/AnotherContext';
 
 const UserDashBoard = () => {
     const { tasks, toggleComplete, deleteTask, newTask, setNewTask, addTask } =
@@ -28,10 +28,10 @@ const UserDashBoard = () => {
 
                             <Link
                                 style={{
-                                    textDecoration: "none",
-                                    color: "black",
+                                    textDecoration: 'none',
+                                    color: 'black',
                                 }}
-                                to={"user-projects"}
+                                to={'user-projects'}
                             >
                                 <p className="m-0">view more</p>
                             </Link>
@@ -46,10 +46,10 @@ const UserDashBoard = () => {
                             </h3>
                             <Link
                                 style={{
-                                    textDecoration: "none",
-                                    color: "black",
+                                    textDecoration: 'none',
+                                    color: 'black',
                                 }}
-                                to={"user-booked-rooms"}
+                                to={'user-booked-rooms'}
                             >
                                 <p className="m-0">view more</p>
                             </Link>
@@ -78,18 +78,18 @@ const UserDashBoard = () => {
                                         <td>{project.managerName}</td>
                                         <td>
                                             {new Date(
-                                                project.startingDate
+                                                project.startingDate,
                                             ).toLocaleDateString()}
                                         </td>
                                         <td>
                                             {new Date(
-                                                project.finishingDate
+                                                project.finishingDate,
                                             ).toLocaleDateString()}
                                         </td>
                                         <td>
                                             {project.selectedEmployees.join(
-                                                ", "
-                                            )}{" "}
+                                                ', ',
+                                            )}{' '}
                                         </td>
                                     </tr>
                                 ))}
@@ -115,7 +115,7 @@ const UserDashBoard = () => {
                                     <li
                                         key={task.id}
                                         className={
-                                            task.completed ? "completed" : ""
+                                            task.completed ? 'completed' : ''
                                         }
                                     >
                                         <span

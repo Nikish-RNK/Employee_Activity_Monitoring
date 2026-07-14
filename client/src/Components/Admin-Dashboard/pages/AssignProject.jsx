@@ -1,8 +1,8 @@
-import React, { useContext } from "react";
-import DataContext from "../../../Context/AdminContext/Datacontext";
-import AnotherContext from "../../../Context/AdminContext/AnotherContext";
-import PopUp from "../../Popup/PopUp";
-import "../css/AssignProject.css";
+import React, { useContext } from 'react';
+import DataContext from '../../../Context/AdminContext/Datacontext';
+import AnotherContext from '../../../Context/AdminContext/AnotherContext';
+import PopUp from '../../Popup/PopUp';
+import '../css/AssignProject.css';
 
 const AssignProject = () => {
     const { allEmp } = useContext(DataContext);
@@ -14,13 +14,12 @@ const AssignProject = () => {
         handleChange,
         assignFormData,
         setPopUp,
-        popUp
+        popUp,
     } = useContext(AnotherContext);
 
     return (
         <section className="assign-page">
             <div className="assign-card">
-
                 {/* ── Header ── */}
                 <div className="assign-header">
                     <div className="assign-header-top">
@@ -31,7 +30,6 @@ const AssignProject = () => {
 
                 <div className="assign-card-content">
                     <form onSubmit={handleAssignSubmit} className="assign-form">
-
                         {/* ── Fields Grid ── */}
                         <div className="assign-grid">
                             <div className="form-group">
@@ -54,9 +52,14 @@ const AssignProject = () => {
                                     onChange={handleChange}
                                     required
                                 >
-                                    <option value="" disabled>Select a Manager</option>
+                                    <option value="" disabled>
+                                        Select a Manager
+                                    </option>
                                     {allEmp.map((each) => (
-                                        <option key={each._id} value={`${each.firstName} ${each.lastName}`}>
+                                        <option
+                                            key={each._id}
+                                            value={`${each.firstName} ${each.lastName}`}
+                                        >
                                             {each.firstName} {each.lastName}
                                         </option>
                                     ))}
@@ -104,9 +107,10 @@ const AssignProject = () => {
                                     </option>
                                 ))}
                             </select>
-                            <p className="select-hint">Hold Ctrl to select multiple employees</p>
+                            <p className="select-hint">
+                                Hold Ctrl to select multiple employees
+                            </p>
                         </div>
-
 
                         {/* ── Footer Buttons ── */}
                         <div className="assign-btns">
@@ -121,7 +125,6 @@ const AssignProject = () => {
                                 Assign Project
                             </button>
                         </div>
-
                     </form>
                 </div>
             </div>
@@ -130,7 +133,9 @@ const AssignProject = () => {
                 <PopUp
                     message={popUp.message}
                     isSuccess={popUp.isSuccess}
-                    onClose={() => setPopUp({ show: false, message: "", isSuccess: true })}
+                    onClose={() =>
+                        setPopUp({ show: false, message: '', isSuccess: true })
+                    }
                 />
             )}
         </section>

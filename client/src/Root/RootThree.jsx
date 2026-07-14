@@ -1,11 +1,11 @@
-import React from "react";
-import { Routes, Route } from "react-router-dom";
-import { DataProviderTwo } from "../Context/AdminContext/AnotherContext";
-import { DataProvider } from "../Context/AdminContext/Datacontext";
-import UserAside from "../Components/User-dashboard/UserAside/userAside";
-import UserDashBoard from "../Components/User-dashboard/pages/UserDashboard";
-import UserProjects from "../Components/User-dashboard/pages/UserProject";
-import UserBookedRooms from "../Components/User-dashboard/pages/UserBookedRooms";
+import React from 'react';
+import { Routes, Route } from 'react-router-dom';
+import { DataProviderTwo } from '../Context/AdminContext/AnotherContext';
+import { DataProvider } from '../Context/AdminContext/Datacontext';
+import UserAside from '../Components/User-dashboard/UserAside/userAside';
+import UserDashBoard from '../Components/User-dashboard/pages/UserDashboard';
+import UserProjects from '../Components/User-dashboard/pages/UserProject';
+import UserBookedRooms from '../Components/User-dashboard/pages/UserBookedRooms';
 
 const UserRoot = () => {
     return (

@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Mono:wght@300;400;500&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Mono:wght@300;400;500&display=swap');
 
 /* ─── CSS Variables ─────────────────────────────────── */
 :root {
@@ -28,14 +28,14 @@
     box-shadow:
         0 1px 3px rgba(0, 0, 0, 0.06),
         0 8px 24px rgba(0, 0, 0, 0.08);
-    font-family: "DM Mono", monospace;
+    font-family: 'DM Mono', monospace;
     position: relative;
     overflow: hidden;
 }
 
 /* subtle ruled-paper texture */
 .employee-form::before {
-    content: "";
+    content: '';
     position: absolute;
     inset: 0;
     background-image: repeating-linear-gradient(
@@ -67,7 +67,7 @@
 
 .addemp-heading h5 {
     margin: 0;
-    font-family: "Playfair Display", serif;
+    font-family: 'Playfair Display', serif;
     font-size: 28px;
     font-weight: 700;
     color: var(--black);
@@ -77,8 +77,8 @@
 
 /* small decorative label beside title */
 .addemp-heading h5::after {
-    content: " — FORM";
-    font-family: "DM Mono", monospace;
+    content: ' — FORM';
+    font-family: 'DM Mono', monospace;
     font-size: 10px;
     font-weight: 400;
     color: var(--silver);
@@ -106,7 +106,7 @@
 }
 
 .employee-form legend {
-    font-family: "DM Mono", monospace;
+    font-family: 'DM Mono', monospace;
     font-size: 10px;
     font-weight: 500;
     letter-spacing: 3px;
@@ -133,7 +133,7 @@
 
 .employee-form label {
     display: block;
-    font-family: "DM Mono", monospace;
+    font-family: 'DM Mono', monospace;
     font-size: 10px;
     font-weight: 500;
     letter-spacing: 2px;
@@ -147,7 +147,7 @@
 .employee-form select {
     width: 300px;
     padding: 11px 14px;
-    font-family: "DM Mono", monospace;
+    font-family: 'DM Mono', monospace;
     font-size: 14px;
     font-weight: 400;
     color: var(--black);
@@ -207,7 +207,7 @@
 .employee-form button {
     width: 180px;
     padding: 14px 0;
-    font-family: "DM Mono", monospace;
+    font-family: 'DM Mono', monospace;
     font-size: 11px;
     font-weight: 500;
     letter-spacing: 3px;
@@ -226,7 +226,7 @@
 }
 
 .employee-form button::after {
-    content: "";
+    content: '';
     position: absolute;
     inset: 0;
     background: var(--white);
@@ -244,7 +244,7 @@
     color: var(--black);
 }
 
-    /* .employee-form button:hover::after {
+/* .employee-form button:hover::after {
         transform: translateX(0);
     } */
 
@@ -285,7 +285,7 @@
 
 .popup-content p {
     margin: 0;
-    font-family: "DM Mono", monospace;
+    font-family: 'DM Mono', monospace;
     font-size: 13px;
     color: var(--charcoal);
     letter-spacing: 0.3px;
@@ -296,7 +296,7 @@
 }
 
 .popup-content.success p::before {
-    content: "✓  ";
+    content: '✓  ';
     font-weight: 700;
     color: var(--black);
 }
@@ -306,7 +306,7 @@
 }
 
 .popup-content.error p::before {
-    content: "✕  ";
+    content: '✕  ';
     font-weight: 700;
     color: var(--graphite);
 }

@@ -1,6 +1,6 @@
-import axios from "axios";
-import { createContext, useState, useEffect } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import axios from 'axios';
+import { createContext, useState, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const DataContext = createContext({});
 
@@ -11,35 +11,35 @@ export const DataProvider = ({ children }) => {
     // useState Section
 
     const [inputData, setInputData] = useState({
-        firstName: "",
-        lastName: "",
-        dob: "",
-        email: "",
-        password: "",
-        username: "",
-        gender: "",
-        phone: "",
+        firstName: '',
+        lastName: '',
+        dob: '',
+        email: '',
+        password: '',
+        username: '',
+        gender: '',
+        phone: '',
         address: {
-            street: "",
-            city: "",
-            state: "",
-            zipCode: "",
-            country: "",
+            street: '',
+            city: '',
+            state: '',
+            zipCode: '',
+            country: '',
         },
-        employmentDate: "",
-        status: "",
+        employmentDate: '',
+        status: '',
         createdAt: new Date().toISOString().slice(0, 10),
-        role: "",
+        role: '',
     });
 
     const [bookRoom, setBookRoom] = useState({
-        projectHead: "",
-        roomsForMeeting: "",
-        reasonForMeeting: "",
-        bookingDate: "",
-        meetingStartingTime: "",
-        meetingEndingTime: "",
-        additionalRequirement: "",
+        projectHead: '',
+        roomsForMeeting: '',
+        reasonForMeeting: '',
+        bookingDate: '',
+        meetingStartingTime: '',
+        meetingEndingTime: '',
+        additionalRequirement: '',
     });
 
     const [popUp, setPopUp] = useState(false);
@@ -51,23 +51,23 @@ export const DataProvider = ({ children }) => {
     const [totalPresent, setTotalPresent] = useState(3);
 
     const [input, setInput] = useState({
-        email: "",
-        password: "",
+        email: '',
+        password: '',
     });
-    const [error, setError] = useState("");
+    const [error, setError] = useState('');
 
     const [tasks, setTasks] = useState(() => {
-        const savedTasks = localStorage.getItem("tasks");
+        const savedTasks = localStorage.getItem('tasks');
         return savedTasks ? JSON.parse(savedTasks) : [];
     });
 
-    const [newTask, setNewTask] = useState("");
+    const [newTask, setNewTask] = useState('');
 
     const [project, setProject] = useState({
-        project_title: "",
-        project_start_date: "",
-        project_end_date: "",
-        project_employee: "",
+        project_title: '',
+        project_start_date: '',
+        project_end_date: '',
+        project_employee: '',
     });
 
     const [projectList, setProjectList] = useState([]);
@@ -92,18 +92,18 @@ export const DataProvider = ({ children }) => {
             const formData = new FormData();
 
             // basic fields
-            formData.append("firstName", inputData.firstName);
-            formData.append("lastName", inputData.lastName);
-            formData.append("dob", inputData.dob);
-            formData.append("email", inputData.email);
-            formData.append("password", inputData.password);
-            formData.append("username", inputData.username);
-            formData.append("gender", inputData.gender);
-            formData.append("phone", inputData.phone);
-            formData.append("employmentDate", inputData.employmentDate);
-            formData.append("status", inputData.status);
-            formData.append("role", inputData.role);
-            formData.append("createdAt", inputData.createdAt);
+            formData.append('firstName', inputData.firstName);
+            formData.append('lastName', inputData.lastName);
+            formData.append('dob', inputData.dob);
+            formData.append('email', inputData.email);
+            formData.append('password', inputData.password);
+            formData.append('username', inputData.username);
+            formData.append('gender', inputData.gender);
+            formData.append('phone', inputData.phone);
+            formData.append('employmentDate', inputData.employmentDate);
+            formData.append('status', inputData.status);
+            formData.append('role', inputData.role);
+            formData.append('createdAt', inputData.createdAt);
 
             // address (IMPORTANT FIX)
             if (inputData.address) {
@@ -115,67 +115,67 @@ export const DataProvider = ({ children }) => {
             // MULTIPLE IMAGES FIX
             if (inputData.images && inputData.images.length === 3) {
                 inputData.images.forEach((file) => {
-                    formData.append("images", file);
+                    formData.append('images', file);
                 });
             } else {
-                alert("Please select exactly 3 images");
+                alert('Please select exactly 3 images');
                 return;
             }
 
             const response = await axios.post(endpoint, formData, {
                 headers: {
-                    "Content-Type": "multipart/form-data",
+                    'Content-Type': 'multipart/form-data',
                 },
             });
 
-            console.log("API Response:", response.data);
+            console.log('API Response:', response.data);
 
             await allUser();
 
             // RESET FORM
             setInputData({
-                firstName: "",
-                lastName: "",
-                dob: "",
-                email: "",
-                password: "",
-                username: "",
-                gender: "",
-                phone: "",
+                firstName: '',
+                lastName: '',
+                dob: '',
+                email: '',
+                password: '',
+                username: '',
+                gender: '',
+                phone: '',
                 address: {
-                    street: "",
-                    city: "",
-                    state: "",
-                    zipCode: "",
-                    country: "",
+                    street: '',
+                    city: '',
+                    state: '',
+                    zipCode: '',
+                    country: '',
                 },
-                employmentDate: "",
-                status: "",
+                employmentDate: '',
+                status: '',
                 createdAt: new Date().toISOString().slice(0, 10),
-                role: "",
+                role: '',
                 images: [],
             });
 
             setPopUp({
                 show: true,
-                message: "Employee data submitted successfully!",
+                message: 'Employee data submitted successfully!',
                 isSuccess: true,
             });
 
             setTimeout(() => {
-                setPopUp({ show: false, message: "", isSuccess: true });
+                setPopUp({ show: false, message: '', isSuccess: true });
             }, 2000);
         } catch (error) {
-            console.error("Error during submission:", error);
+            console.error('Error during submission:', error);
 
             setPopUp({
                 show: true,
-                message: "Failed to submit employee data. Please try again.",
+                message: 'Failed to submit employee data. Please try again.',
                 isSuccess: false,
             });
 
             setTimeout(() => {
-                setPopUp({ show: false, message: "", isSuccess: true });
+                setPopUp({ show: false, message: '', isSuccess: true });
             }, 3000);
         }
     };
@@ -183,10 +183,10 @@ export const DataProvider = ({ children }) => {
     const handleClick = async (e) => {
         e.preventDefault();
         setProject({
-            project_title: "",
-            project_employee: "",
-            project_start_date: "",
-            project_end_date: "",
+            project_title: '',
+            project_employee: '',
+            project_start_date: '',
+            project_end_date: '',
         });
         try {
             const response = await axios.post(
@@ -196,15 +196,15 @@ export const DataProvider = ({ children }) => {
             console.log(response.data);
             setPopUp({
                 show: true,
-                message: "Project submitted successfully!",
+                message: 'Project submitted successfully!',
                 isSuccess: true,
             });
 
             setTimeout(() => {
-                setPopUp({ show: false, message: "", isSuccess: true });
+                setPopUp({ show: false, message: '', isSuccess: true });
             }, 2000);
         } catch (error) {
-            console.error("Error adding project:", error);
+            console.error('Error adding project:', error);
         }
     };
 
@@ -217,7 +217,7 @@ export const DataProvider = ({ children }) => {
         setProject({ ...project, [name]: value });
         setBookRoom({ ...bookRoom, [name]: value });
 
-        if (name.startsWith("address[")) {
+        if (name.startsWith('address[')) {
             const fieldName = name.slice(8, -1);
             setInputData((prev) => ({
                 ...prev,
@@ -242,12 +242,12 @@ export const DataProvider = ({ children }) => {
             .then((res) => {
                 if (res.data && res.data.allEmployees) {
                     const managers = res.data.allEmployees.filter(
-                        (employee) => employee.role === "Manager",
+                        (employee) => employee.role === 'Manager',
                     );
                     setAllManager(managers);
 
                     const employees = res.data.allEmployees.filter(
-                        (employee) => employee.role === "Employee",
+                        (employee) => employee.role === 'Employee',
                     );
                     setAllEmp(employees);
 
@@ -266,7 +266,7 @@ export const DataProvider = ({ children }) => {
                 }
             })
             .catch((err) => {
-                console.log("Error Fetching User Data", err);
+                console.log('Error Fetching User Data', err);
             });
     };
 
@@ -274,11 +274,11 @@ export const DataProvider = ({ children }) => {
         axios
             .delete(`${import.meta.env.VITE_API_URL}/fun/employee/${empId}`)
             .then((res) => {
-                console.log("Employee Deleted Successfully");
+                console.log('Employee Deleted Successfully');
                 allUser();
             })
             .catch((error) => {
-                console.log("Error Deleting Employee", error);
+                console.log('Error Deleting Employee', error);
             });
     };
 
@@ -286,16 +286,16 @@ export const DataProvider = ({ children }) => {
         axios
             .delete(`${import.meta.env.VITE_API_URL}/fun/project/${empId}`)
             .then((res) => {
-                console.log("Employee Deleted Successfully");
+                console.log('Employee Deleted Successfully');
                 allprojects();
             })
             .catch((error) => {
-                console.log("Error Deleting Employee", error);
+                console.log('Error Deleting Employee', error);
             });
     };
 
     const handleEdit = (employeeId) => {
-        navigate("/aside/addemployee", { state: { employeeId } });
+        navigate('/aside/addemployee', { state: { employeeId } });
     };
 
     useEffect(() => {
@@ -305,15 +305,15 @@ export const DataProvider = ({ children }) => {
     // Login pages Functions
 
     useEffect(() => {
-        setInput({ email: "", password: "" });
+        setInput({ email: '', password: '' });
     }, []);
 
     const handleLogin = async (e) => {
         e.preventDefault();
 
         console.log('hi hello');
-        
-        console.log("API URL:", import.meta.env.VITE_API_URL);
+
+        console.log('API URL:', import.meta.env.VITE_API_URL);
         try {
             const response = await axios.post(
                 `${import.meta.env.VITE_API_URL}/fun/login`,
@@ -325,35 +325,35 @@ export const DataProvider = ({ children }) => {
             if (response.data) {
                 const { userType } = response.data;
 
-                if (userType === "admin") {
-                    navigate("/aside");
-                } else if (userType === "manager") {
-                    navigate("/manageraside");
-                } else if (userType === "employee") {
-                    navigate("/userAside");
+                if (userType === 'admin') {
+                    navigate('/aside');
+                } else if (userType === 'manager') {
+                    navigate('/manageraside');
+                } else if (userType === 'employee') {
+                    navigate('/userAside');
                 } else {
-                    setError("Unknown user type");
+                    setError('Unknown user type');
                 }
             }
         } catch (error) {
-            setError("Your Email or Password is Wrong, Try again");
-            console.error("Error during login:", error);
+            setError('Your Email or Password is Wrong, Try again');
+            console.error('Error during login:', error);
         }
     };
 
     // Dashboard  page Functions
 
     useEffect(() => {
-        localStorage.setItem("tasks", JSON.stringify(tasks));
+        localStorage.setItem('tasks', JSON.stringify(tasks));
     }, [tasks]);
 
     const addTask = () => {
-        if (newTask.trim() === "") return;
+        if (newTask.trim() === '') return;
         setTasks([
             ...tasks,
             { id: Date.now(), text: newTask, completed: false },
         ]);
-        setNewTask("");
+        setNewTask('');
     };
 
     const toggleComplete = (id) => {
@@ -382,7 +382,7 @@ export const DataProvider = ({ children }) => {
                 }
             })
             .catch((err) => {
-                console.log("Error Fetching User Data");
+                console.log('Error Fetching User Data');
             });
     };
 
@@ -393,13 +393,13 @@ export const DataProvider = ({ children }) => {
     const handleBookingRoom = async (e) => {
         e.preventDefault();
         setBookRoom({
-            projectHead: "",
-            roomsForMeeting: "",
-            reasonForMeeting: "",
-            bookingDate: "",
-            meetingStartingTime: "",
-            meetingEndingTime: "",
-            additionalRequirement: "",
+            projectHead: '',
+            roomsForMeeting: '',
+            reasonForMeeting: '',
+            bookingDate: '',
+            meetingStartingTime: '',
+            meetingEndingTime: '',
+            additionalRequirement: '',
         });
         try {
             const response = await axios.post(
@@ -409,27 +409,27 @@ export const DataProvider = ({ children }) => {
 
             setPopUp({
                 show: true,
-                message: "Meeting Room Booked successfully!",
+                message: 'Meeting Room Booked successfully!',
                 isSuccess: true,
             });
 
             setTimeout(() => {
-                setPopUp({ show: false, message: "", isSuccess: true });
+                setPopUp({ show: false, message: '', isSuccess: true });
             }, 2000);
 
             setBookRoom({
-                projectHead: "",
-                roomsForMeeting: "",
-                reasonForMeeting: "",
-                bookingDate: "",
-                meetingStartingTime: "",
-                meetingEndingTime: "",
-                additionalRequirement: "",
+                projectHead: '',
+                roomsForMeeting: '',
+                reasonForMeeting: '',
+                bookingDate: '',
+                meetingStartingTime: '',
+                meetingEndingTime: '',
+                additionalRequirement: '',
             });
 
-            console.log("Successfully Booked Room", response);
+            console.log('Successfully Booked Room', response);
         } catch (error) {
-            console.error("Error Booking Room", error);
+            console.error('Error Booking Room', error);
         }
     };
 

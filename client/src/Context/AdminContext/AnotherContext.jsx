@@ -1,7 +1,7 @@
-import axios from "axios";
-import React, { createContext, useEffect, useState } from "react";
-import AllMeetingRooms from "../../Components/Admin-Dashboard/pages/BookedRooms";
-import { useNavigate } from "react-router-dom";
+import axios from 'axios';
+import React, { createContext, useEffect, useState } from 'react';
+import AllMeetingRooms from '../../Components/Admin-Dashboard/pages/BookedRooms';
+import { useNavigate } from 'react-router-dom';
 
 const AnotherContext = createContext({});
 
@@ -17,7 +17,7 @@ export const DataProviderTwo = ({ children }) => {
     const [attendance, setAttendance] = useState({});
 
     useEffect(() => {
-        const storedAttendance = JSON.parse(localStorage.getItem("attendance"));
+        const storedAttendance = JSON.parse(localStorage.getItem('attendance'));
         if (storedAttendance) {
             setAttendance(storedAttendance);
         }
@@ -36,8 +36,8 @@ export const DataProviderTwo = ({ children }) => {
             };
 
             localStorage.setItem(
-                "attendance",
-                JSON.stringify(updatedAttendance)
+                'attendance',
+                JSON.stringify(updatedAttendance),
             );
 
             return updatedAttendance;
@@ -46,11 +46,11 @@ export const DataProviderTwo = ({ children }) => {
         try {
             const response = await axios.put(
                 `${import.meta.env.VITE_API_URL}/project/attendance/${id}`,
-                { isPresent: updatedStatus }
+                { isPresent: updatedStatus },
             );
-            console.log("Attendance updated successfully:", response.data);
+            console.log('Attendance updated successfully:', response.data);
         } catch (error) {
-            console.error("Error updating attendance:", error.message);
+            console.error('Error updating attendance:', error.message);
         }
     };
 
@@ -67,16 +67,18 @@ export const DataProviderTwo = ({ children }) => {
         setAsideOpen(!asideOpen);
     };
 
-        const handleRoomDelete = (empId) => {
-            axios
-                .delete(`${import.meta.env.VITE_API_URL}/project/booked-room/${empId}`)
-                .then((res) => {
-                    AllMeetingRooms();
-                })
-                .catch((error) => {
-                    console.log("Error Deleting Booked Room", error);
-                });
-        };
+    const handleRoomDelete = (empId) => {
+        axios
+            .delete(
+                `${import.meta.env.VITE_API_URL}/project/booked-room/${empId}`,
+            )
+            .then((res) => {
+                AllMeetingRooms();
+            })
+            .catch((error) => {
+                console.log('Error Deleting Booked Room', error);
+            });
+    };
 
     //  assign component function
 
@@ -84,14 +86,14 @@ export const DataProviderTwo = ({ children }) => {
 
     const handleAssign = (each) => {
         setSelectedProject(each);
-        navigate("/aside/assignproject");
+        navigate('/aside/assignproject');
     };
 
     const [assignFormData, setAssignFormData] = useState({
-        projectName: "",
-        managerName: "",
-        startingDate: "",
-        finishingDate: "",
+        projectName: '',
+        managerName: '',
+        startingDate: '',
+        finishingDate: '',
         selectedEmployees: [],
     });
 
@@ -106,10 +108,10 @@ export const DataProviderTwo = ({ children }) => {
     useEffect(() => {
         if (selectedProject) {
             setAssignFormData({
-                projectName: selectedProject.project_title || "",
-                managerName: selectedProject.project_employee || "",
-                startingDate: selectedProject.project_start_date || "",
-                finishingDate: selectedProject.project_end_date || "",
+                projectName: selectedProject.project_title || '',
+                managerName: selectedProject.project_employee || '',
+                startingDate: selectedProject.project_start_date || '',
+                finishingDate: selectedProject.project_end_date || '',
                 selectedEmployees: [],
             });
         }
@@ -118,7 +120,7 @@ export const DataProviderTwo = ({ children }) => {
     const handleSelectedemployee = (e) => {
         const selectedOptions = Array.from(
             e.target.selectedOptions,
-            (option) => option.value
+            (option) => option.value,
         );
         setAssignFormData({
             ...assignFormData,
@@ -128,7 +130,7 @@ export const DataProviderTwo = ({ children }) => {
 
     const [popUp, setPopUp] = useState({
         show: false,
-        message: "",
+        message: '',
         isSuccess: false,
     });
 
@@ -138,13 +140,13 @@ export const DataProviderTwo = ({ children }) => {
         try {
             const assignResponse = await axios.post(
                 `${import.meta.env.VITE_API_URL}/project/assignproject`,
-                assignFormData
+                assignFormData,
             );
 
             if (assignResponse.status === 200) {
                 setPopUp({
                     show: true,
-                    message: "Project assigned successfully!",
+                    message: 'Project assigned successfully!',
                     isSuccess: true,
                 });
 
@@ -156,43 +158,43 @@ export const DataProviderTwo = ({ children }) => {
                         project: assignFormData,
                         manager: assignFormData.managerName,
                         employees: assignFormData.selectedEmployees,
-                    }
+                    },
                 );
 
                 if (notifyResponse.status === 200) {
                     setPopUp({
                         show: true,
                         message:
-                            "Notifications sent successfully to Employees!",
+                            'Notifications sent successfully to Employees!',
                         isSuccess: true,
                     });
 
                     setTimeout(() => {
-                        setPopUp({ show: false, message: "", isSuccess: true });
+                        setPopUp({ show: false, message: '', isSuccess: true });
                     }, 2000);
                 } else {
                     alert(
-                        "Project assigned, but failed to send notifications."
+                        'Project assigned, but failed to send notifications.',
                     );
                 }
             } else {
-                alert("Failed to assign the project.");
+                alert('Failed to assign the project.');
             }
 
             setAssignFormData({
-                projectName: "",
-                managerName: "",
-                startingDate: "",
-                finishingDate: "",
+                projectName: '',
+                managerName: '',
+                startingDate: '',
+                finishingDate: '',
                 selectedEmployees: [],
             });
         } catch (error) {
             console.error(
-                "Error during project assignment or notification:",
-                error
+                'Error during project assignment or notification:',
+                error,
             );
             alert(
-                "An error occurred while assigning the project or sending notifications."
+                'An error occurred while assigning the project or sending notifications.',
             );
         }
     };
@@ -203,11 +205,11 @@ export const DataProviderTwo = ({ children }) => {
         const fetchAssignedProjects = async () => {
             try {
                 const response = await axios.get(
-                    `${import.meta.env.VITE_API_URL}/project/assignedprojects`
+                    `${import.meta.env.VITE_API_URL}/project/assignedprojects`,
                 );
                 setAssignedProjects(response.data);
             } catch (error) {
-                console.error("Error fetching assigned projects:", error);
+                console.error('Error fetching assigned projects:', error);
             }
         };
 
@@ -220,11 +222,11 @@ export const DataProviderTwo = ({ children }) => {
         const fetchBookedRooms = async () => {
             try {
                 const response = await axios.get(
-                    `${import.meta.env.VITE_API_URL}/project/booked-rooms`
+                    `${import.meta.env.VITE_API_URL}/project/booked-rooms`,
                 );
                 setBookedRooms(response.data);
             } catch (error) {
-                console.error("Error fetching booked rooms:", error);
+                console.error('Error fetching booked rooms:', error);
             }
         };
 

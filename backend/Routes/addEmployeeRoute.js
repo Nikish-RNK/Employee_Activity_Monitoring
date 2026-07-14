@@ -1,38 +1,38 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
-const multer = require("multer");
-const { exec } = require("child_process");
-const path = require("path");
+const multer = require('multer');
+const { exec } = require('child_process');
+const path = require('path');
 
-const Employee = require("../Models/addEmployeeSchema");
+const Employee = require('../Models/addEmployeeSchema');
 
 // multer setup
 const storage = multer.memoryStorage();
 const upload = multer({ storage });
 
-router.post("/", upload.array("images", 3), async (req, res) => {
+router.post('/', upload.array('images', 3), async (req, res) => {
     try {
-        console.log("BODY:", req.body);
-        console.log("FILES:", req.files);
+        console.log('BODY:', req.body);
+        console.log('FILES:', req.files);
 
         // validation
         if (!req.files || req.files.length !== 3) {
-            return res.status(400).json({ error: "Exactly 3 images required" });
+            return res.status(400).json({ error: 'Exactly 3 images required' });
         }
 
         // clean phone
         const cleanPhone = req.body.phone
-            ? req.body.phone.replace(/\D/g, "")
-            : "";
+            ? req.body.phone.replace(/\D/g, '')
+            : '';
 
         // images array
-        const images = req.files.map(file => ({
+        const images = req.files.map((file) => ({
             data: file.buffer,
-            contentType: file.mimetype
+            contentType: file.mimetype,
         }));
 
         let address = {};
-        if (typeof req.body.address === "string") {
+        if (typeof req.body.address === 'string') {
             try {
                 address = JSON.parse(req.body.address);
             } catch {
@@ -55,41 +55,46 @@ router.post("/", upload.array("images", 3), async (req, res) => {
             status: req.body.status,
             role: req.body.role,
             address,
-            images
+            images,
         });
 
         await newEmployee.save();
 
-        console.log("Employee saved");
+        console.log('Employee saved');
 
-        const extractPath = path.join(__dirname, "../../face_recognition/extractImages.js");
-        const encodePath = path.join(__dirname, "../../face_recognition/generate_encodings.py");
+        const extractPath = path.join(
+            __dirname,
+            '../../face_recognition/extractImages.js',
+        );
+        const encodePath = path.join(
+            __dirname,
+            '../../face_recognition/generate_encodings.py',
+        );
 
         exec(`node "${extractPath}"`, (err, stdout, stderr) => {
             if (err) {
-                console.error("Extract Error:", err);
+                console.error('Extract Error:', err);
             } else {
-                console.log("Images extracted");
+                console.log('Images extracted');
                 console.log(stdout);
             }
         });
 
         exec(`python "${encodePath}"`, (err, stdout, stderr) => {
             if (err) {
-                console.error("Encoding Error:", err);
+                console.error('Encoding Error:', err);
             } else {
-                console.log("Encodings updated");
+                console.log('Encodings updated');
                 console.log(stdout);
             }
         });
 
         res.json({
-            message: "Employee Saved & Model Updated",
-            imageCount: images.length
+            message: 'Employee Saved & Model Updated',
+            imageCount: images.length,
         });
-
     } catch (err) {
-        console.error("FULL ERROR:", err);
+        console.error('FULL ERROR:', err);
         res.status(500).json({ error: err.message });
     }
 });

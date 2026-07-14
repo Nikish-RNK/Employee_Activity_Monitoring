@@ -1,8 +1,8 @@
-import React, { useContext } from "react";
-import "../css/AllEmployees.css";
-import { FaTrash } from "react-icons/fa6";
-import { FaRegEdit } from "react-icons/fa";
-import DataContext from "../../../Context/AdminContext/Datacontext";
+import React, { useContext } from 'react';
+import '../css/AllEmployees.css';
+import { FaTrash } from 'react-icons/fa6';
+import { FaRegEdit } from 'react-icons/fa';
+import DataContext from '../../../Context/AdminContext/Datacontext';
 
 const AllEmployees = () => {
     const { handleEdit, handleEmployeeDelete, allCombined } =
@@ -15,13 +15,13 @@ const AllEmployees = () => {
             const base64String = btoa(
                 new Uint8Array(image.data.data).reduce(
                     (data, byte) => data + String.fromCharCode(byte),
-                    ""
-                )
+                    '',
+                ),
             );
 
             return `data:${image.contentType};base64,${base64String}`;
         } catch (err) {
-            console.error("Image conversion error:", err);
+            console.error('Image conversion error:', err);
             return null;
         }
     };
@@ -73,10 +73,10 @@ const AllEmployees = () => {
                                                     src={imageSrc}
                                                     alt="employee"
                                                     style={{
-                                                        width: "50px",
-                                                        height: "50px",
-                                                        objectFit: "cover",
-                                                        borderRadius: "50%",
+                                                        width: '50px',
+                                                        height: '50px',
+                                                        objectFit: 'cover',
+                                                        borderRadius: '50%',
                                                     }}
                                                 />
                                             ) : (
@@ -105,7 +105,7 @@ const AllEmployees = () => {
                                                 className="btn btn-danger btn-sm"
                                                 onClick={() =>
                                                     handleEmployeeDelete(
-                                                        each._id
+                                                        each._id,
                                                     )
                                                 }
                                             >

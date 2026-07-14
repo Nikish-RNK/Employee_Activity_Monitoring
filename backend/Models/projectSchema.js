@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
 const projectSchema = new mongoose.Schema({
     project_title: { type: String, required: true },
@@ -7,5 +7,5 @@ const projectSchema = new mongoose.Schema({
     project_end_date: { type: String, required: true },
 });
 
-const Project = mongoose.model("Project", projectSchema);
+const Project = mongoose.model('Project', projectSchema);
 module.exports = Project;

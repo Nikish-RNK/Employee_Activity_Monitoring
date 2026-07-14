@@ -1,10 +1,10 @@
-import React, { useContext } from "react";
-import DataContext from "../../../Context/AdminContext/Datacontext";
-import "../css/project.css";
-import { FaTrash } from "react-icons/fa6";
-import { MdAssignmentAdd } from "react-icons/md";
-import AnotherContext from "../../../Context/AdminContext/AnotherContext";
-import PopUp from "../../Popup/PopUp";
+import React, { useContext } from 'react';
+import DataContext from '../../../Context/AdminContext/Datacontext';
+import '../css/project.css';
+import { FaTrash } from 'react-icons/fa6';
+import { MdAssignmentAdd } from 'react-icons/md';
+import AnotherContext from '../../../Context/AdminContext/AnotherContext';
+import PopUp from '../../Popup/PopUp';
 
 const Projects = () => {
     const {
@@ -15,14 +15,13 @@ const Projects = () => {
         projectList,
         handleProjectDelete,
         popUp,
-        setPopUp
+        setPopUp,
     } = useContext(DataContext);
 
     const { handleAssign } = useContext(AnotherContext);
 
     return (
         <div className="projects-page">
-
             {/* ── Header ── */}
             <div className="projects-header">
                 <div className="projects-header-top">
@@ -32,17 +31,14 @@ const Projects = () => {
             </div>
 
             <div className="projects-body">
-
                 {/* ── Left: Add Project Form ── */}
                 <div className="projects-form-panel">
-
                     <div className="form-panel-header">
                         <h5>Add Project</h5>
                         <p>Fill in the details to create a new project</p>
                     </div>
 
                     <form onSubmit={handleClick} className="projects-form">
-
                         <div className="form-group">
                             <label>Project Title</label>
                             <input
@@ -85,9 +81,14 @@ const Projects = () => {
                                 onChange={handleChange}
                                 required
                             >
-                                <option value="" disabled>Select Manager</option>
+                                <option value="" disabled>
+                                    Select Manager
+                                </option>
                                 {allManager.map((each) => (
-                                    <option key={each._id} value={each.firstName}>
+                                    <option
+                                        key={each._id}
+                                        value={each.firstName}
+                                    >
                                         {each.firstName} {each.lastName}
                                     </option>
                                 ))}
@@ -97,16 +98,16 @@ const Projects = () => {
                         <button type="submit" className="btn-primary">
                             Add Project
                         </button>
-
                     </form>
                 </div>
 
                 {/* ── Right: Projects Table ── */}
                 <div className="projects-table-panel">
-
                     <div className="table-panel-header">
                         <h5>Project List</h5>
-                        <span className="project-count">{projectList.length} projects</span>
+                        <span className="project-count">
+                            {projectList.length} projects
+                        </span>
                     </div>
 
                     <div className="table-wrapper">
@@ -126,16 +127,30 @@ const Projects = () => {
                                 {projectList.length > 0 ? (
                                     projectList.map((each, index) => (
                                         <tr key={each._id}>
-                                            <td className="td-index">{index + 1}</td>
-                                            <td className="td-title">{each.project_title}</td>
+                                            <td className="td-index">
+                                                {index + 1}
+                                            </td>
+                                            <td className="td-title">
+                                                {each.project_title}
+                                            </td>
                                             <td>{each.project_employee}</td>
-                                            <td>{new Date(each.project_start_date).toLocaleDateString()}</td>
-                                            <td>{new Date(each.project_end_date).toLocaleDateString()}</td>
+                                            <td>
+                                                {new Date(
+                                                    each.project_start_date,
+                                                ).toLocaleDateString()}
+                                            </td>
+                                            <td>
+                                                {new Date(
+                                                    each.project_end_date,
+                                                ).toLocaleDateString()}
+                                            </td>
                                             <td>
                                                 <button
                                                     className="action-btn assign-btn"
                                                     aria-label="Assign Project"
-                                                    onClick={() => handleAssign(each)}
+                                                    onClick={() =>
+                                                        handleAssign(each)
+                                                    }
                                                 >
                                                     <MdAssignmentAdd />
                                                 </button>
@@ -144,7 +159,11 @@ const Projects = () => {
                                                 <button
                                                     className="action-btn delete-btn"
                                                     aria-label="Delete Project"
-                                                    onClick={() => handleProjectDelete(each._id)}
+                                                    onClick={() =>
+                                                        handleProjectDelete(
+                                                            each._id,
+                                                        )
+                                                    }
                                                 >
                                                     <FaTrash />
                                                 </button>
@@ -168,7 +187,9 @@ const Projects = () => {
                 <PopUp
                     message={popUp.message}
                     isSuccess={popUp.isSuccess}
-                    onClose={() => setPopUp({ show: false, message: "", isSuccess: true })}
+                    onClose={() =>
+                        setPopUp({ show: false, message: '', isSuccess: true })
+                    }
                 />
             )}
         </div>

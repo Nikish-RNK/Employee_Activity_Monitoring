@@ -1,11 +1,11 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
-const mongoose = require("mongoose");
-const AssignProject = require("../Models/projectAssignSchema");
-const employees = require("../Models/addEmployeeSchema");
-const RoomBooking = require("../Models/roomSchema");
+const mongoose = require('mongoose');
+const AssignProject = require('../Models/projectAssignSchema');
+const employees = require('../Models/addEmployeeSchema');
+const RoomBooking = require('../Models/roomSchema');
 
-router.post("/assignproject", async (req, res) => {
+router.post('/assignproject', async (req, res) => {
     const {
         projectName,
         managerName,
@@ -15,7 +15,7 @@ router.post("/assignproject", async (req, res) => {
     } = req.body;
 
     if (!Array.isArray(selectedEmployees) || selectedEmployees.length === 0) {
-        return res.status(400).json({ message: "Invalid employee names" });
+        return res.status(400).json({ message: 'Invalid employee names' });
     }
 
     const newAssignedProject = new AssignProject({
@@ -28,11 +28,11 @@ router.post("/assignproject", async (req, res) => {
 
     try {
         await newAssignedProject.save();
-        res.status(200).json({ message: "New Project Assigned Successfully" });
+        res.status(200).json({ message: 'New Project Assigned Successfully' });
     } catch (error) {
-        console.error("Error assigning project:", error.message);
+        console.error('Error assigning project:', error.message);
         res.status(500).json({
-            message: "Error Assigning Project",
+            message: 'Error Assigning Project',
             error: error.message,
         });
     }
@@ -40,7 +40,7 @@ router.post("/assignproject", async (req, res) => {
 
 // remainder
 
-router.put("/attendance/:id", async (req, res) => {
+router.put('/attendance/:id', async (req, res) => {
     const { id } = req.params;
     const { isPresent } = req.body;
 
@@ -48,29 +48,29 @@ router.put("/attendance/:id", async (req, res) => {
         const updatedEmployee = await employees.findByIdAndUpdate(
             id,
             { isPresent },
-            { new: true }
+            { new: true },
         );
 
         if (!updatedEmployee) {
             return res.status(404).json({
-                message: "Employee not found",
+                message: 'Employee not found',
             });
         }
 
         res.status(200).json({
-            message: "Attendance added successfully",
+            message: 'Attendance added successfully',
             employee: updatedEmployee,
         });
     } catch (error) {
-        console.error("Error updating attendance:", error.message);
+        console.error('Error updating attendance:', error.message);
         res.status(500).json({
-            message: "Error updating attendance",
+            message: 'Error updating attendance',
             error: error.message,
         });
     }
 });
 
-router.post("/room-booking", async (req, res) => {
+router.post('/room-booking', async (req, res) => {
     const {
         projectHead,
         roomsForMeeting,
@@ -93,47 +93,46 @@ router.post("/room-booking", async (req, res) => {
 
     try {
         await newRoomBooking.save();
-        res.status(200).json({ message: "Room Booked Successfully" });
+        res.status(200).json({ message: 'Room Booked Successfully' });
     } catch (error) {
-        console.log("Error Booking Room", error);
+        console.log('Error Booking Room', error);
         res.status(500).json({
-            message: "Error Booking Room",
+            message: 'Error Booking Room',
             error: error.message,
         });
     }
 });
 
-router.get("/all-booked-rooms", async (req, res) => {
+router.get('/all-booked-rooms', async (req, res) => {
     try {
-        const allBookedRooms = await RoomBooking.find();    
+        const allBookedRooms = await RoomBooking.find();
         res.status(200).json({
-            message: "Successfully Fetched Booked Rooms",
+            message: 'Successfully Fetched Booked Rooms',
             allBookedRooms,
         });
     } catch (error) {
-        console.error("Error Fetching Bookes Rooms", error);
-        res.status(500).json({ message: "Error Fetching Booked Rooms", error });
+        console.error('Error Fetching Bookes Rooms', error);
+        res.status(500).json({ message: 'Error Fetching Booked Rooms', error });
     }
 });
 
-router.delete("/booked-room/:id", async (req, res) => {
+router.delete('/booked-room/:id', async (req, res) => {
     const { id } = req.params;
     console.log(`Received Id is ${id}`);
-    
 
     try {
         const Room = await RoomBooking.findByIdAndDelete(id);
 
         if (Room) {
             res.status(200).json({
-                message: "Booked Room deleted successfully",
+                message: 'Booked Room deleted successfully',
             });
         } else {
-            res.status(404).json({ message: "Booked Room not found" });
+            res.status(404).json({ message: 'Booked Room not found' });
         }
     } catch (error) {
-        console.log("Error Deleting Rooms", error);
-        res.status(500).json({ error: "Server Error" });
+        console.log('Error Deleting Rooms', error);
+        res.status(500).json({ error: 'Server Error' });
     }
 });
 
@@ -142,55 +141,53 @@ const sendNotification = (employee, project) => {
     console.log(`Assigned to project: ${project.projectName}`);
 };
 
-
-router.post("/notify-manager-and-employees", async (req, res) => {
+router.post('/notify-manager-and-employees', async (req, res) => {
     const { project, manager, employees } = req.body;
 
     if (!project || !manager || !employees || employees.length === 0) {
-        return res.status(400).json({ message: "Invalid data provided." });
+        return res.status(400).json({ message: 'Invalid data provided.' });
     }
 
     try {
         // Notify the manager
         console.log(
-            `Notifying manager ${manager}: Project "${project.projectName}" has been assigned.`
+            `Notifying manager ${manager}: Project "${project.projectName}" has been assigned.`,
         );
 
         // Notify each employee
         employees.forEach((employee) => {
             console.log(
-                `Notifying employee ${employee}: Assigned to project "${project.projectName}".`
+                `Notifying employee ${employee}: Assigned to project "${project.projectName}".`,
             );
         });
 
         res.status(200).json({
             message:
-                "Notifications sent to manager and employees successfully!",
+                'Notifications sent to manager and employees successfully!',
         });
     } catch (error) {
-        console.error("Error sending notifications:", error);
-        res.status(500).json({ message: "Failed to send notifications." });
+        console.error('Error sending notifications:', error);
+        res.status(500).json({ message: 'Failed to send notifications.' });
     }
 });
 
-router.get("/assignedprojects", async (req, res) => {
+router.get('/assignedprojects', async (req, res) => {
     try {
         const assignedProjects = await AssignProject.find(); // Replace with your database model
         res.status(200).json(assignedProjects);
     } catch (error) {
-        console.error("Error fetching assigned projects:", error);
-        res.status(500).json({ message: "Failed to fetch assigned projects." });
+        console.error('Error fetching assigned projects:', error);
+        res.status(500).json({ message: 'Failed to fetch assigned projects.' });
     }
 });
 
-
-router.get("/booked-rooms", async (req, res) => {
+router.get('/booked-rooms', async (req, res) => {
     try {
         const bookedrooms = await RoomBooking.find();
         res.status(200).json(bookedrooms);
     } catch (error) {
-        console.error("Error fetching Booked Rooms:", error);
-        res.status(500).json({ message: "Failed to Booked Rooms." });
+        console.error('Error fetching Booked Rooms:', error);
+        res.status(500).json({ message: 'Failed to Booked Rooms.' });
     }
 });
 

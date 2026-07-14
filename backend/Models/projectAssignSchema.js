@@ -17,11 +17,13 @@ const ProjectAssignSchema = new mongoose.Schema({
         type: Date,
         required: true,
     },
-    selectedEmployees: [{
-        type:  String,
-        ref: "Employee",
-        required: true,
-    }],
+    selectedEmployees: [
+        {
+            type: String,
+            ref: 'Employee',
+            required: true,
+        },
+    ],
 });
 
-module.exports = mongoose.model("ProjectAssign", ProjectAssignSchema);
+module.exports = mongoose.model('ProjectAssign', ProjectAssignSchema);

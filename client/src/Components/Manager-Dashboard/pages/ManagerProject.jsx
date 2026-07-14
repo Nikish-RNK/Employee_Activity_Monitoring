@@ -1,6 +1,6 @@
-import React, { useContext } from "react";
-import "../css/ManagerProject.css";
-import AnotherContext from "../../../Context/AdminContext/AnotherContext";
+import React, { useContext } from 'react';
+import '../css/ManagerProject.css';
+import AnotherContext from '../../../Context/AdminContext/AnotherContext';
 
 const ManagerProjects = () => {
     const { assignedProjects } = useContext(AnotherContext);
@@ -30,15 +30,15 @@ const ManagerProjects = () => {
                                 <td>{project.managerName}</td>
                                 <td>
                                     {new Date(
-                                        project.startingDate
+                                        project.startingDate,
                                     ).toLocaleDateString()}
                                 </td>
                                 <td>
                                     {new Date(
-                                        project.finishingDate
+                                        project.finishingDate,
                                     ).toLocaleDateString()}
                                 </td>
-                                <td>{project.selectedEmployees.join(", ")}</td>
+                                <td>{project.selectedEmployees.join(', ')}</td>
                             </tr>
                         ))}
                     </tbody>
